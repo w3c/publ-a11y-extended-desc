@@ -107,7 +107,7 @@ Example pattern:
     <h2>Extended description — Figure 1</h2>
     <img src="figure1.png" role="presentation" alt="">
     <p>...detailed structured description...</p>
-    <a role="doc-backlink" href="chapter01.xhtml#img1">Back to image</a>
+    <a role="doc-backlink" href="chapter01.xhtml#extdesc-1">Back to image</a>
 
 ```html
 <!-- Main content -->
@@ -119,7 +119,7 @@ Example pattern:
 	<h2>Extended description — Figure 1</h2>
 	<img src="figure1.png" role="presentation" alt="">
 	<p>...detailed structured description...</p>
-	<a role="doc-backlink" href="chapter01.xhtml#img1">Back to image</a>
+	<a role="doc-backlink" href="chapter01.xhtml#extdesc-1">Back to image</a>
 </section>
 ```
 
