@@ -145,8 +145,6 @@ Similar semantic identification challenges have been successfully addressed, dem
 
 ## Alternatives considered
 
-## Alternatives considered
-
 - `<details>`: native HTML, but problematic in EPUB due to pagination and inconsistent support.
 - `longdesc`: rejected due to historical misuse, lack of adoption, and removal from HTML and EPUB specifications.
 - `rel="extendeddescription"`: could provide additional context but is not considered by assistive technologies.
