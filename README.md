@@ -149,7 +149,7 @@ Similar semantic identification challenges have been successfully addressed, dem
 
 - `<details>`: native HTML, but problematic in EPUB due to pagination and inconsistent support.
 - `longdesc`: rejected due to historical misuse, lack of adoption, and removal from HTML and EPUB specifications.
-- `rel="extendeddescription"`: could provide additional context but is not considered by assistive technologies.
+- `rel="extendeddescription"`: does not allow the container of the extended description to be identified. Could provide additional context but is not considered by assistive technologies.
 - `epub:type`: The use of epub:type is deprecated by the EPUB spec.
 - RDFa/microdata: structured data approaches that add semantic richness but require parsing infrastructure and do not directly expose relationships to assistive technologies via the accessibility tree.
 - Reusing `doc-noteref`/`doc-footnote` semantics: while structurally similar, extended descriptions differ in scope and purpose from footnotes; repurposing existing roles would create confusion for users and implementers.
