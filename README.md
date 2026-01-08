@@ -32,6 +32,8 @@ Authors and reading systems need a reliable, discoverable, and programmatic way 
 
 Collection managers and accessibility experts need to be able to identify and collect extended descriptions with links to their context image.
 
+At a platform level, this problem arises because extended image descriptions lack explicit, programmatically identifiable semantics. Web accessibility guidance requires that text alternatives and their relationships to non-text content be programmatically determinable, rather than inferred from presentation or author conventions. HTML and ARIA follow this same architectural principle by providing explicit semantics for meaningful content, enabling consistent discovery and interaction by assistive technologies. While short text alternatives are programmatically associated with images, there is currently no equivalent semantic mechanism for extended descriptions. As a result, assistive technologies cannot reliably identify, announce, or expose extended descriptions in a consistent way, even when authors provide them.
+
 ## Goals
 
 - Provide machine-discoverable semantics for extended descriptions.
