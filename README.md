@@ -162,7 +162,7 @@ Similar semantic identification challenges have been successfully addressed, dem
 
 ## Stakeholder feedback 
 
-- Fondazione LIA and Benetech recommend the separate file technique for EPUB. 
+- The DAISY Consortium, Fondazione LIA and Benetech recommend the separate file technique for EPUB. 
 - Reading system developers and AT vendors should be engaged to validate UX and API exposure.
 
 ## Next steps
