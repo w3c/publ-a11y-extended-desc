@@ -110,18 +110,6 @@ Example pattern:
     <img src="figure1.png" role="presentation" alt="">
     <p>...detailed structured description...</p>
     <a role="doc-backlink" href="chapter01.xhtml#extdesc-1">Back to image</a>
-
-```html
-<!-- Main content -->
-<img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
-<a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
-
-<!-- Extended description file -->
-<section id="desc-img1" role="extendeddescription">
-	<h2>Extended description — Figure 1</h2>
-	<img src="figure1.png" role="presentation" alt="">
-	<p>...detailed structured description...</p>
-	<a role="doc-backlink" href="chapter01.xhtml#extdesc-1">Back to image</a>
 </section>
 ```
 
