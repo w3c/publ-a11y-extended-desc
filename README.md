@@ -32,6 +32,8 @@ Authors and reading systems need a reliable, discoverable, and programmatic way 
 
 Collection managers and accessibility experts need to be able to identify and collect extended descriptions with links to their context image.
 
+At a platform level, this problem arises because extended image descriptions lack explicit, programmatically identifiable semantics. Web accessibility guidance requires that text alternatives and their relationships to non-text content be programmatically determinable, rather than inferred from presentation or author conventions. HTML and ARIA follow this same architectural principle by providing explicit semantics for meaningful content, enabling consistent discovery and interaction by assistive technologies. While short text alternatives are programmatically associated with images, there is currently no equivalent semantic mechanism for extended descriptions. As a result, assistive technologies cannot reliably identify, announce, or expose extended descriptions in a consistent way, even when authors provide them.
+
 ## Goals
 
 - Provide machine-discoverable semantics for extended descriptions.
@@ -108,18 +110,6 @@ Example pattern:
     <img src="figure1.png" role="presentation" alt="">
     <p>...detailed structured description...</p>
     <a role="doc-backlink" href="chapter01.xhtml#extdesc-1">Back to image</a>
-
-```html
-<!-- Main content -->
-<img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
-<a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
-
-<!-- Extended description file -->
-<section id="desc-img1" role="extendeddescription">
-	<h2>Extended description — Figure 1</h2>
-	<img src="figure1.png" role="presentation" alt="">
-	<p>...detailed structured description...</p>
-	<a role="doc-backlink" href="chapter01.xhtml#extdesc-1">Back to image</a>
 </section>
 ```
 
@@ -147,8 +137,8 @@ Similar semantic identification challenges have been successfully addressed, dem
 
 - `<details>`: native HTML, but problematic in EPUB due to pagination and inconsistent support.
 - `longdesc`: rejected due to historical misuse, lack of adoption, and removal from HTML and EPUB specifications.
-- `rel="extendeddescription"`: could provide additional context but is not considered by assistive technologies.
-- `epub:type`: lacks sufficient granularity to distinguish extended descriptions from other supplementary content types; would require new values and coordination with the EPUB Working Group and is not currently supported by assistive technologies.
+- `rel="extendeddescription"`: does not allow the container of the extended description to be identified. Could provide additional context but is not considered by assistive technologies.
+- `epub:type`: The use of epub:type is deprecated by the EPUB spec.
 - RDFa/microdata: structured data approaches that add semantic richness but require parsing infrastructure and do not directly expose relationships to assistive technologies via the accessibility tree.
 - Reusing `doc-noteref`/`doc-footnote` semantics: while structurally similar, extended descriptions differ in scope and purpose from footnotes; repurposing existing roles would create confusion for users and implementers.
 
@@ -160,7 +150,7 @@ Similar semantic identification challenges have been successfully addressed, dem
 
 ## Stakeholder feedback 
 
-- Fondazione LIA and Benetech recommend the separate file technique for EPUB. 
+- The DAISY Consortium, Fondazione LIA and Benetech recommend the separate file technique for EPUB. 
 - Reading system developers and AT vendors should be engaged to validate UX and API exposure.
 
 ## Next steps
