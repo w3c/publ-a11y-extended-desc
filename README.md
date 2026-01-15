@@ -78,13 +78,17 @@ Additionally, testing showed declarative workarounds being impractical when pars
 ### The footnote precedent
 
 Footnotes provide a well-established, accessible pattern: a reference in the main flow that links to a separate, uniquely identified container with a backlink to return to the reading position.
-- DPUB ARIA’s `doc-noteref` / `doc-footnote` roles are a concrete example of how explicit, paired semantics enable assistive technologies to announce purpose, provide navigation, and allow tooling to extract related pairs programmatically.
-- This precedent shows the value of:
+
+DPUB ARIA’s `doc-noteref` / `doc-footnote` roles are a concrete example of how explicit, paired semantics enable assistive technologies to announce purpose, provide navigation, and allow tooling to extract related pairs programmatically. Thanks to this declarative semantics, reading solutions can enable specific UX features (which, for example, allow the user to keep their place in the text), but even if they do not, the system still works with links. 
+
+This precedent shows the value of:
     - unique IDs for references and targets,
     - bidirectional navigation (reference → note, note → backlink),
     - exposing semantics in the accessibility tree so user agents and AT can offer specialized affordances.
-- Extended descriptions share these link-and-return needs but differ in scope: they are typically longer, structured, and may include media or complex markup. That difference argues against reusing footnote roles directly.
-- Conclusion: the footnote model is a useful precedent for linking and navigation patterns, but extended descriptions benefit from distinct semantics (e.g., `extendeddescriptionref` / `extendeddescription`) that reflect their content and afford appropriate UX and tooling behavior.
+
+Extended descriptions share these link-and-return needs but differ in scope: they are typically longer, structured, and may include media or complex markup. That difference argues against reusing footnote roles directly.
+
+The footnote model is a useful precedent for linking and navigation patterns, but extended descriptions benefit from distinct semantics (e.g., `extendeddescriptionref` / `extendeddescription`) that reflect their content and afford appropriate UX and tooling behavior. As they are links, they remain usable even with legacy reading systems.
 
 <img src="/assets/Screenshot-footnote-books.png" alt="A screenshot showing the apple book reader displaying a footnote. The main text includes a superscript number linking to the footnote section. The referenced note text appears in a pop-up panel right on top of the superscript." width="200px">
 <img src="/assets/Screenshot-footnote-thorium.png" alt="Screenshot of the Thorium Reader displaying a footnote. The main text includes a superscript number that links to the footnote section. The referenced note text appears in a pop-up panel at the bottom of the screen." width="200px">
