@@ -65,7 +65,7 @@ Today, best practice relies on the use of `aria-details` to identify the link to
 - The image should have a brief `alt` and an `aria-details` attribute pointing to the link's ID.
 - The link should have a unique ID.
 - In the external file, each description is in a `section` with a matching ID, a heading, a presentational copy of the image, the detailed description, and a backlink (`role="doc-backlink"`) to the main content.
-- Note: WAI-ARIA 1.2 specifies that content referenced by `aria-details` is not flattened into accessible name/description computation; it is intended to expose structured, potentially complex descriptions for discovery and navigation (see ARIA `aria-details` in References). Authors should ensure the referenced link is visible to all users and test the pattern across common reading systems and screen readers because user agent and AT support can vary.
+- Note: `aria-details` is designed to reference structured, potentially complex descriptions that may include multiple sections or rich markup. Authors should ensure the referenced link is visible to all users and test the pattern across common reading systems and screen readers because user agent and AT support can vary.
 
 ### Current limitations
 
