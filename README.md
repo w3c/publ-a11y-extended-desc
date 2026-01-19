@@ -50,7 +50,7 @@ Collection managers and accessibility experts need to be able to identify and co
 
 Publisher feedback from Brazil, Europe, and North America has informed this work, with proposed solutions reviewed and validated by some publishers. Publisher associations in Italy and France have been engaged. Community use cases and testing are documented in publishing and accessibility working groups (see References).
 
-A proof-of-concept (POC) in both HTML and EPUB formats has been developed and refined over three years by the DAISY Transition to EPUB working group, demonstrating practical patterns and their effectiveness across reading systems.
+A proof-of-concept (POC) in both HTML and EPUB formats has been developed and refined over three years by the DAISY Transition to EPUB working group, demonstrating practical patterns and their effectiveness across reading systems. For more information on best practices, see the [Extended Descriptions Best Practices](https://inclusivepublishing.org/ExtendedDescriptionsBestPractices).
 
 Further user testing is recommended to validate discoverability and presentation patterns in paginated vs. continuous reading contexts.
 
@@ -169,7 +169,7 @@ Similar semantic identification challenges have been successfully addressed, dem
 
 - [Standardizing Extended Descriptions: User Stories, Testing Results, and Current Limitations](https://github.com/w3c/epub-specs/wiki/Standardizing-Extended-Descriptions:-User-Stories,-Testing-Results,-and-Current-Limitations/)
 - [Extended Descriptions Use Cases and Reading System Expectations](https://github.com/w3c/publ-a11y/wiki/Extended-Descriptions-Use-Cases-and-Reading-System-Expectations)
-- [Best Practices for Authoring Extended Descriptions in EPUB](https://daisy.github.io/transitiontoepub/best-practices/extended-desc/index.html)
+- [Extended Descriptions Best Practices](https://inclusivepublishing.org/ExtendedDescriptionsBestPractices)
 - [WCAG 2.2 — Non-text Content](https://www.w3.org/TR/WCAG22/#non-text-content)
 - [ARIA `aria-details` Attribute](https://www.w3.org/TR/wai-aria-1.2/#aria-details)
 - [POC: Extended Description](https://github.com/daisy/transitiontoepub/tree/main/experiments/extended-desc)
