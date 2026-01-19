@@ -28,11 +28,11 @@ The document summarizes goals, non-goals, candidate approaches, examples, altern
 
 Users encounter images and non-text content that convey complex information (e.g., technical diagrams, charts, mathematical notation, museum objects) where a short `alt` is insufficient and an extended, structured description is provided. Without clear affordances, users may not discover these descriptions or understand the linking between them and the primary content.
 
-Authors and reading systems need a reliable, discoverable, and programmatic way to identify and surface extended descriptions in consistent ways without breaking reading flow or excluding non-AT users.
+While there is a well-established standard for providing alternative text (`alt` attributes) for images, there is currently no equivalent standardized mechanism for extended descriptions. This inconsistency creates a gap in accessibility support: authors cannot reliably associate extended descriptions with their images, and assistive technologies cannot uniformly discover and surface them.
+
+Authors and reading systems need a reliable, discoverable, and programmatic way to identify and surface extended descriptions in consistent ways without breaking reading flow or excluding non-AT users. Reading solution developers, in particular, require explicit semantics to offer a dedicated, optimized experience for accessing extended descriptions—whether through pop-ups, side panels, or other specialized UI patterns that preserve reading context.
 
 Collection managers and accessibility experts need to be able to identify and collect extended descriptions with links to their context image.
-
-At a platform level, this problem arises because extended image descriptions lack explicit, programmatically identifiable semantics. Web accessibility guidance requires that text alternatives and their relationships to non-text content be programmatically determinable, rather than inferred from presentation or author conventions. HTML and ARIA follow this same architectural principle by providing explicit semantics for meaningful content, enabling consistent discovery and interaction by assistive technologies. While short text alternatives are programmatically associated with images, there is currently no equivalent semantic mechanism for extended descriptions. As a result, assistive technologies cannot reliably identify, announce, or expose extended descriptions in a consistent way, even when authors provide them.
 
 ## Goals
 
