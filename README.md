@@ -58,7 +58,7 @@ Further user testing is recommended to validate discoverability and presentation
 
 ### Recommended technique: identify link with `aria-details`
 
-Today, best practice relies on the use of `aria-details` to identify the link to the extended description. The referenced element is typically an in-document anchor that links to a section in the same document or to a separate file; the latter option avoids heavy additions to the original content and gives users the choice to consult the extra content.
+Today, best practice relies on the use of `aria-details` to identify the link to the extended description. Following DAISY best practices, extended descriptions should be managed in a separate file rather than in the main document content. This approach avoids heavy additions to the original document structure and gives users the choice to consult the extra content without disrupting the reading flow.
 
 - Place the extended description in a separate HTML file (e.g., appendix or dedicated section).
 - In the main content, after the image, add a link to the extended description. The link can be text or an icon (with accessible name).
