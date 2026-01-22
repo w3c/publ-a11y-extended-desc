@@ -28,11 +28,11 @@ The document summarizes goals, non-goals, candidate approaches, examples, altern
 
 Users encounter images and non-text content that convey complex information (e.g., technical diagrams, charts, mathematical notation, museum objects) where a short `alt` is insufficient and an extended, structured description is provided. Without clear affordances, users may not discover these descriptions or understand the linking between them and the primary content.
 
-Authors and reading systems need a reliable, discoverable, and programmatic way to identify and surface extended descriptions in consistent ways without breaking reading flow or excluding non-AT users.
+While there is a well-established standard for providing alternative text (`alt` attributes) for images, there is currently no equivalent standardized mechanism for extended descriptions. This inconsistency creates a gap in accessibility support: authors cannot reliably associate extended descriptions with their images, and assistive technologies cannot uniformly discover and surface them.
+
+Authors and reading systems need a reliable, discoverable, and programmatic way to identify and surface extended descriptions in consistent ways without breaking reading flow or excluding non-AT users. Reading solution developers, in particular, require explicit semantics to offer a dedicated, optimized experience for accessing extended descriptions—whether through pop-ups, side panels, or other specialized UI patterns that preserve reading context.
 
 Collection managers and accessibility experts need to be able to identify and collect extended descriptions with links to their context image.
-
-At a platform level, this problem arises because extended image descriptions lack explicit, programmatically identifiable semantics. Web accessibility guidance requires that text alternatives and their relationships to non-text content be programmatically determinable, rather than inferred from presentation or author conventions. HTML and ARIA follow this same architectural principle by providing explicit semantics for meaningful content, enabling consistent discovery and interaction by assistive technologies. While short text alternatives are programmatically associated with images, there is currently no equivalent semantic mechanism for extended descriptions. As a result, assistive technologies cannot reliably identify, announce, or expose extended descriptions in a consistent way, even when authors provide them.
 
 ## Goals
 
@@ -50,7 +50,7 @@ At a platform level, this problem arises because extended image descriptions lac
 
 Publisher feedback from Brazil, Europe, and North America has informed this work, with proposed solutions reviewed and validated by some publishers. Publisher associations in Italy and France have been engaged. Community use cases and testing are documented in publishing and accessibility working groups (see References).
 
-A proof-of-concept (POC) in both HTML and EPUB formats has been developed and refined over three years by the DAISY Transition to EPUB working group, demonstrating practical patterns and their effectiveness across reading systems.
+A proof-of-concept (POC) in both HTML and EPUB formats has been developed and refined over three years by the DAISY Transition to EPUB working group, demonstrating practical patterns and their effectiveness across reading systems. For more information on best practices, see the [Extended Descriptions Best Practices](https://inclusivepublishing.org/ExtendedDescriptionsBestPractices).
 
 Further user testing is recommended to validate discoverability and presentation patterns in paginated vs. continuous reading contexts.
 
@@ -58,14 +58,14 @@ Further user testing is recommended to validate discoverability and presentation
 
 ### Recommended technique: identify link with `aria-details`
 
-Today, best practice relies on the use of `aria-details` to identify the link to the extended description. The referenced element is typically an in-document anchor that links to a section in the same document or to a separate file; the latter option avoids heavy additions to the original content and gives users the choice to consult the extra content.
+Today, best practice relies on the use of `aria-details` to identify the link to the extended description. Following DAISY best practices, extended descriptions should be managed in a separate file rather than in the main document content. This approach avoids heavy additions to the original document structure and gives users the choice to consult the extra content without disrupting the reading flow.
 
 - Place the extended description in a separate HTML file (e.g., appendix or dedicated section).
 - In the main content, after the image, add a link to the extended description. The link can be text or an icon (with accessible name).
 - The image should have a brief `alt` and an `aria-details` attribute pointing to the link's ID.
 - The link should have a unique ID.
 - In the external file, each description is in a `section` with a matching ID, a heading, a presentational copy of the image, the detailed description, and a backlink (`role="doc-backlink"`) to the main content.
-- Note: WAI-ARIA 1.2 specifies that content referenced by `aria-details` is not flattened into accessible name/description computation; it is intended to expose structured, potentially complex descriptions for discovery and navigation (see ARIA `aria-details` in References). Authors should ensure the referenced link is visible to all users and test the pattern across common reading systems and screen readers because user agent and AT support can vary.
+- Note: `aria-details` is designed to reference structured, potentially complex descriptions that may include multiple sections or rich markup. Authors should ensure the referenced link is visible to all users and test the pattern across common reading systems and screen readers because user agent and AT support can vary.
 
 ### Current limitations
 
@@ -78,13 +78,17 @@ Additionally, testing showed declarative workarounds being impractical when pars
 ### The footnote precedent
 
 Footnotes provide a well-established, accessible pattern: a reference in the main flow that links to a separate, uniquely identified container with a backlink to return to the reading position.
-- DPUB ARIA’s `doc-noteref` / `doc-footnote` roles are a concrete example of how explicit, paired semantics enable assistive technologies to announce purpose, provide navigation, and allow tooling to extract related pairs programmatically.
-- This precedent shows the value of:
+
+DPUB ARIA’s `doc-noteref` / `doc-footnote` roles are a concrete example of how explicit, paired semantics enable assistive technologies to announce purpose, provide navigation, and allow tooling to extract related pairs programmatically. Thanks to this declarative semantics, reading solutions can enable specific UX features (which, for example, allow the user to keep their place in the text), but even if they do not, the system still works with links. 
+
+This precedent shows the value of:
     - unique IDs for references and targets,
     - bidirectional navigation (reference → note, note → backlink),
     - exposing semantics in the accessibility tree so user agents and AT can offer specialized affordances.
-- Extended descriptions share these link-and-return needs but differ in scope: they are typically longer, structured, and may include media or complex markup. That difference argues against reusing footnote roles directly.
-- Conclusion: the footnote model is a useful precedent for linking and navigation patterns, but extended descriptions benefit from distinct semantics (e.g., `extendeddescriptionref` / `extendeddescription`) that reflect their content and afford appropriate UX and tooling behavior.
+
+Extended descriptions share these link-and-return needs but differ in scope: they are typically longer, structured, and may include media or complex markup. That difference argues against reusing footnote roles directly.
+
+The footnote model is a useful precedent for linking and navigation patterns, but extended descriptions benefit from distinct semantics (e.g., `extendeddescriptionref` / `extendeddescription`) that reflect their content and afford appropriate UX and tooling behavior. As they are links, they remain usable even with legacy reading systems.
 
 <img src="/assets/Screenshot-footnote-books.png" alt="A screenshot showing the apple book reader displaying a footnote. The main text includes a superscript number linking to the footnote section. The referenced note text appears in a pop-up panel right on top of the superscript." width="200px">
 <img src="/assets/Screenshot-footnote-thorium.png" alt="Screenshot of the Thorium Reader displaying a footnote. The main text includes a superscript number that links to the footnote section. The referenced note text appears in a pop-up panel at the bottom of the screen." width="200px">
@@ -165,7 +169,7 @@ Similar semantic identification challenges have been successfully addressed, dem
 
 - [Standardizing Extended Descriptions: User Stories, Testing Results, and Current Limitations](https://github.com/w3c/epub-specs/wiki/Standardizing-Extended-Descriptions:-User-Stories,-Testing-Results,-and-Current-Limitations/)
 - [Extended Descriptions Use Cases and Reading System Expectations](https://github.com/w3c/publ-a11y/wiki/Extended-Descriptions-Use-Cases-and-Reading-System-Expectations)
-- [Best Practices for Authoring Extended Descriptions in EPUB](https://daisy.github.io/transitiontoepub/best-practices/extended-desc/index.html)
+- [Extended Descriptions Best Practices](https://inclusivepublishing.org/ExtendedDescriptionsBestPractices)
 - [WCAG 2.2 — Non-text Content](https://www.w3.org/TR/WCAG22/#non-text-content)
 - [ARIA `aria-details` Attribute](https://www.w3.org/TR/wai-aria-1.2/#aria-details)
 - [POC: Extended Description](https://github.com/daisy/transitiontoepub/tree/main/experiments/extended-desc)
