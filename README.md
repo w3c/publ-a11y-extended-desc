@@ -16,7 +16,7 @@ author: Publishing Maintenance Group Accessibility Task Force
 
 ## Participate
 
-- Issue tracker: 
+- Issue tracker: [https://github.com/w3c/publ-a11y-extended-desc/issues](https://github.com/w3c/publ-a11y-extended-desc/issues)
 
 ## Introduction
 
