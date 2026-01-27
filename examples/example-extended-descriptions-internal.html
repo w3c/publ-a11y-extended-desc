@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extended Descriptions - Sample Web Page (DAISY POC Examples)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #1a1a1a;
+        }
+
+        .article-section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 1.4em;
+        }
+
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 12px;
+            color: #34495e;
+            font-size: 1.1em;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .figure {
+            margin: 30px 0;
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+
+        .figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        figcaption {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .extended-desc-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            border-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .extended-desc-link:hover {
+            border-color: #0056b3;
+        }
+
+        .extended-desc-link:focus {
+            outline: 2px solid #0056b3;
+            outline-offset: 2px;
+        }
+
+        .icon {
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+        }
+
+        /* Extended descriptions section */
+        .descriptions-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid #ddd;
+            background-color: #fafafa;
+            padding: 30px;
+            border-radius: 4px;
+        }
+
+        .descriptions-section h2 {
+            margin-top: 0;
+        }
+
+        [role="extendeddescription"] {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: white;
+            border-left: 4px solid #007bff;
+            border-radius: 4px;
+        }
+
+        [role="extendeddescription"] h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
+        [role="extendeddescription"] img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        [role="extendeddescription"] table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        [role="extendeddescription"] table th,
+        [role="extendeddescription"] table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        [role="extendeddescription"] table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        [role="extendeddescription"] ol,
+        [role="extendeddescription"] ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        [role="extendeddescription"] li {
+            margin-bottom: 8px;
+        }
+
+        [role="doc-backlink"] {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 6px 12px;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+
+        [role="doc-backlink"]:hover {
+            background-color: #5a6268;
+        }
+
+        [role="doc-backlink"]:focus {
+            outline: 2px solid #5a6268;
+            outline-offset: 2px;
+        }
+
+        .desc-content {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #000;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        .aside {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .aside h4 {
+            margin-top: 0;
+            color: #1565c0;
+        }
+
+        a[role="extendeddescriptionref"] {
+            color: #007bff;
+            text-decoration: none;
+            border-bottom: 1px dotted #007bff;
+        }
+
+        a[role="extendeddescriptionref"]:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <div class="container">
+        <h1>Extended Descriptions Sample - In-File Implementation</h1>
+        <p><em>This sample webpage demonstrates the in-file implementation of extended descriptions using <code>aria-details</code> and semantic ARIA roles. Based on the DAISY Transition to EPUB Extended Descriptions Proof of Concept.</em></p>
+        
+        <div class="article-section" id="main-content">
+            <h2>Examples with Detailed Information</h2>
+            <p>
+                This page demonstrates how complex visual information can be described and made accessible through structured extended descriptions 
+                embedded within the same document. Each image has a brief alt text for basic context, plus a link to a detailed extended description 
+                that provides comprehensive information about the content.
+            </p>
+
+            <h2>Website Visitor Analytics</h2>
+            <p>
+                Let's examine the website traffic statistics for the first quarter of 2014. The following bar chart compares visitor numbers 
+                across three different websites.
+            </p>
+
+            <figure class="figure">
+                <img id="img1" 
+                     src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/chart-ebcaadfb.png"
+                     alt="Bar chart showing 2014 First Quarter Visitors to three websites"
+                     aria-details="img1-desc">
+                <figcaption>
+                    <strong>Figure 1: Website Visitor Statistics Q1 2014</strong>
+                    <p>This bar chart displays monthly visitor data for three websites throughout the first quarter of 2014.</p>
+                    <p><a id="img1-desc-link" 
+                          class="extended-desc-link" 
+                          role="extendeddescriptionref"
+                          href="#img1-desc">
+                        View extended description
+                    </a></p>
+                </figcaption>
+            </figure>
+
+            <p>
+                The chart reveals interesting trends across the three sites. Site 1 maintains the highest traffic but shows declining visitor numbers, 
+                while Site 3 demonstrates steady growth throughout the quarter.
+            </p>
+
+            <h2>Human Circulatory and Respiratory Systems</h2>
+            <p>
+                Understanding the interconnection between different body systems is crucial to biology. The following diagram illustrates how the 
+                heart and lungs work together to transport oxygen throughout the body.
+            </p>
+
+            <div class="figure">
+                <img id="img2" 
+                     src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/ex1.jpg"
+                     alt="Diagram showing oxygen-rich blood flowing between the heart and lungs"
+                     aria-details="img2-desc">
+                <figcaption>
+                    <strong>Figure 2: Heart and Lung System Diagram</strong>
+                    <p>A cross-section showing how oxygen-rich and oxygen-poor blood flow through the heart and lungs.</p>
+                    <p><a id="img2-desc-link" 
+                          class="extended-desc-link" 
+                          role="extendeddescriptionref"
+                          href="#img2-desc">
+                        View extended description
+                    </a></p>
+                </figcaption>
+            </div>
+
+            <p>
+                This biological partnership ensures that cells throughout the body receive the oxygen they need while waste products are efficiently removed.
+            </p>
+
+            <h2>Market Segmentation Analysis</h2>
+            <p>
+                Market analysis often employs pie charts to show how different segments contribute to the whole. The following pie chart represents 
+                the breakdown of market segments in a hypothetical analysis.
+            </p>
+
+            <figure class="figure">
+                <img id="img3" 
+                     src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/pie-chart-154411_640.png"
+                     alt="Pie chart with four segments: 45%, 25%, 20%, and 10%"
+                     aria-details="img3-desc">
+                <figcaption>
+                    <strong>Figure 3: Market Segment Pie Chart</strong>
+                    <p>Distribution of market segments represented as percentages of the whole.</p>
+                    <p><a id="img3-desc-link" 
+                          class="extended-desc-link" 
+                          role="extendeddescriptionref"
+                          href="#img3-desc">
+                        View extended description
+                    </a></p>
+                </figcaption>
+            </figure>
+
+            <div class="aside">
+                <h4>About Extended Descriptions</h4>
+                <p>
+                    Each image on this page has a brief alt text describing what the image shows, plus a link to an extended description 
+                    that provides detailed information. Users can choose whether to view the extended description based on their needs.
+                </p>
+            </div>
+        </div>
+
+        <!-- Extended Descriptions Section -->
+        <div class="descriptions-section">
+            <h2>Extended Descriptions</h2>
+            <p>
+                The detailed descriptions below provide comprehensive information about each visualization presented in the article above. 
+                These descriptions include data tables, step-by-step explanations, and contextual information that helps readers fully understand 
+                the content conveyed by each image.
+            </p>
+
+            <section id="img1-desc" role="extendeddescription">
+                <h3>Extended Description: Website Visitor Statistics</h3>
+                
+                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/chart-ebcaadfb.png" 
+                     role="presentation" 
+                     alt="">
+                
+                <div class="desc-content">
+                    <h4>Overview</h4>
+                    <p>
+                        The chart shows the website hits for the first quarter of 2014 across three different sites. Site 1 has more visitors than either 
+                        of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant number of visitors, while for Site 3 
+                        page hits are increasing month on month.
+                    </p>
+                    
+                    <h4>Data Table</h4>
+                    <table>
+                        <tr>
+                            <th scope="col">Period</th>
+                            <th scope="col">Site 1</th>
+                            <th scope="col">Site 2</th>
+                            <th scope="col">Site 3</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Jan</th>
+                            <td>135</td>
+                            <td>112</td>
+                            <td>92</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Feb</th>
+                            <td>117</td>
+                            <td>114</td>
+                            <td>99</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mar</th>
+                            <td>96</td>
+                            <td>111</td>
+                            <td>126</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Qtr Total</th>
+                            <td>348</td>
+                            <td>337</td>
+                            <td>308</td>
+                        </tr>
+                    </table>
+                    
+                    <h4>Presentation</h4>
+                    <p>
+                        The bar chart represents both the number of visitors per month for each website, and the total number of visitors 
+                        per website for the entire quarter. Website visitors for each month are represented using columns lined up horizontally, 
+                        with heights indicating the number of visitors. A fourth column is provided for each website with the accumulated 
+                        site visitors for the quarter.
+                    </p>
+                </div>
+
+                <a role="doc-backlink" href="#img1">← Back to chart</a>
+            </section>
+
+            <section id="img2-desc" role="extendeddescription">
+                <h3>Extended Description: Circulatory and Respiratory Systems</h3>
+                
+                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/ex1.jpg" 
+                     role="presentation" 
+                     alt="">
+                
+                <div class="desc-content">
+                    <h4>Systems in Sync</h4>
+                    <p>
+                        The circulatory and respiratory systems work together to transport oxygen-rich blood through the body. A diagram shows a 
+                        cross-section of a heart between two lungs. Red arrows show the path of oxygen-rich blood cells. Blue arrows show the path of 
+                        oxygen-poor blood.
+                    </p>
+                    
+                    <h4>The Process</h4>
+                    <ol>
+                        <li>Oxygen-rich blood cells travel to the heart from the lungs.</li>
+                        <li>The heart pumps enriched blood cells. They travel through the arteries to the body.</li>
+                        <li>Throughout the body, red blood cells deliver oxygen to cells and remove carbon dioxide.</li>
+                        <li>Veins carry oxygen-poor blood back to the heart.</li>
+                        <li>The heart pumps blood back to the lungs to eliminate carbon dioxide and absorb oxygen.</li>
+                        <li>Red blood cells move through the lungs, taking in oxygen and exchanging it for carbon dioxide.</li>
+                    </ol>
+                </div>
+
+                <a role="doc-backlink" href="#img2">← Back to diagram</a>
+            </section>
+
+            <section id="img3-desc" role="extendeddescription">
+                <h3>Extended Description: Market Segment Pie Chart</h3>
+                
+                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/pie-chart-154411_640.png" 
+                     role="presentation" 
+                     alt="">
+                
+                <div class="desc-content">
+                    <h4>Chart Overview</h4>
+                    <p>A pie chart with 4 parts representing different market segments:</p>
+                    <ol>
+                        <li>45% - Largest segment, shown in blue</li>
+                        <li>25% - Second largest segment, shown in green</li>
+                        <li>20% - Third segment, shown in yellow</li>
+                        <li>10% - Smallest segment, shown in red</li>
+                    </ol>
+                    
+                    <h4>Market Analysis</h4>
+                    <p>
+                        This pie chart illustrates the market distribution across four distinct segments. The largest segment captures 45% of the market, 
+                        indicating it is the dominant area. The second segment at 25% represents a significant but smaller portion. The remaining two 
+                        segments together account for 30% of the market, with one at 20% and the smallest at 10%.
+                    </p>
+                </div>
+
+                <a role="doc-backlink" href="#img3">← Back to chart</a>
+            </section>
+        </div>
+
+        <footer>
+            <p>
+                <strong>Note:</strong> This sample webpage demonstrates the in-file extended descriptions technique as documented in the 
+                <a href="https://github.com/w3c/publ-a11y-extended-desc">W3C Publication Accessibility - Extended Descriptions</a> explainer. 
+                Examples and structure adapted from the 
+                <a href="https://github.com/daisy/transitiontoepub/tree/main/experiments/extended-desc/extended-description-poc">DAISY Transition to EPUB Extended Descriptions Proof of Concept</a>.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

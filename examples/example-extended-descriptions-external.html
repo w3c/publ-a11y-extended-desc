@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extended Descriptions - Sample Web Page (External File Implementation)</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 8px; padding: 40px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+        h1 { margin-bottom: 30px; }
+        .article-section { margin-bottom: 40px; }
+        h2 { margin: 30px 0 15px; color: #2c3e50; font-size: 1.4em; }
+        h3 { margin: 20px 0 12px; color: #34495e; font-size: 1.1em; }
+        p { margin-bottom: 15px; }
+        
+        .figure { margin: 30px 0; text-align: center; border: 1px solid #ddd; padding: 20px; border-radius: 4px; background: #fafafa; }
+        .figure img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 15px; }
+        figcaption { font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 15px; }
+        
+        .extended-desc-link { display: inline-block; margin-top: 10px; padding: 8px 16px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; transition: 0.2s; }
+        .extended-desc-link:hover { background: #0056b3; }
+        .extended-desc-link:focus { outline: 2px solid #0056b3; outline-offset: 2px; }
+        
+        .aside { background: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .aside h4 { margin-top: 0; color: #1565c0; }
+        
+        a[role="extendeddescriptionref"] { color: #007bff; text-decoration: none; border-bottom: 1px dotted #007bff; }
+        a[role="extendeddescriptionref"]:hover { text-decoration: underline; }
+        
+        footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }
+        footer a { color: #007bff; }
+        
+        .skip-to-content { position: absolute; top: -40px; left: 0; background: #000; color: white; padding: 8px; text-decoration: none; z-index: 100; }
+        .skip-to-content:focus { top: 0; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <div class="container">
+        <h1>Extended Descriptions Sample - External File Implementation</h1>
+        <p><em>This sample webpage demonstrates the external file implementation of extended descriptions. Images are linked to separate HTML files containing detailed descriptions. Based on the DAISY Transition to EPUB Extended Descriptions Proof of Concept.</em></p>
+        
+        <div class="article-section" id="main-content">
+            <h2>Examples with Detailed Information</h2>
+            <p>
+                This page demonstrates how complex visual information can be described and made accessible through extended descriptions 
+                in separate files. Each image has a brief alt text for basic context, plus a link to a detailed extended description 
+                file that provides comprehensive information about the content.
+            </p>
+
+            <h2 id="section-img1">Website Visitor Analytics</h2>
+            <p>
+                Let's examine the website traffic statistics for the first quarter of 2014. The following bar chart compares visitor numbers 
+                across three different websites.
+            </p>
+
+            <figure class="figure">
+                <img id="img1" 
+                     src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/chart-ebcaadfb.png"
+                     alt="Bar chart showing 2014 First Quarter Visitors to three websites">
+                <figcaption>
+                    <strong>Figure 1: Website Visitor Statistics Q1 2014</strong>
+                    <p>This bar chart displays monthly visitor data for three websites throughout the first quarter of 2014.</p>
+                    <p><a id="img1-desc-link" 
+                          class="extended-desc-link" 
+                          role="extendeddescriptionref"
+                          href="example-extended-descriptions-external.html#img1-desc">
+                        View extended description
+                    </a></p>
+                </figcaption>
+            </figure>
+
+            <p>
+                The chart reveals interesting trends across the three sites. Site 1 maintains the highest traffic but shows declining visitor numbers, 
+                while Site 3 demonstrates steady growth throughout the quarter.
+            </p>
+
+            <h2 id="section-img2">Human Circulatory and Respiratory Systems</h2>
+            <p>
+                Understanding the interconnection between different body systems is crucial to biology. The following diagram illustrates how the 
+                heart and lungs work together to transport oxygen throughout the body.
+            </p>
+
+            <div class="figure">
+                <img id="img2" 
+                     src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/ex1.jpg"
+                     alt="Diagram showing oxygen-rich blood flowing between the heart and lungs">
+                <figcaption>
+                    <strong>Figure 2: Heart and Lung System Diagram</strong>
+                    <p>A cross-section showing how oxygen-rich and oxygen-poor blood flow through the heart and lungs.</p>
+                    <p><a id="img2-desc-link" 
+                          class="extended-desc-link" 
+                          role="extendeddescriptionref"
+                          href="example-extended-descriptions-external.html#img2-desc">
+                        View extended description
+                    </a></p>
+                </figcaption>
+            </div>
+
+            <p>
+                This biological partnership ensures that cells throughout the body receive the oxygen they need while waste products are efficiently removed.
+            </p>
+
+            <h2 id="section-img3">Market Segmentation Analysis</h2>
+            <p>
+                Market analysis often employs pie charts to show how different segments contribute to the whole. The following pie chart represents 
+                the breakdown of market segments in a hypothetical analysis.
+            </p>
+
+            <figure class="figure">
+                <img id="img3" 
+                     src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/pie-chart-154411_640.png"
+                     alt="Pie chart with four segments: 45%, 25%, 20%, and 10%">
+                <figcaption>
+                    <strong>Figure 3: Market Segment Pie Chart</strong>
+                    <p>Distribution of market segments represented as percentages of the whole.</p>
+                    <p><a id="img3-desc-link" 
+                          class="extended-desc-link" 
+                          role="extendeddescriptionref"
+                          href="example-extended-descriptions-external.html#img3-desc">
+                        View extended description
+                    </a></p>
+                </figcaption>
+            </figure>
+
+            <div class="aside">
+                <h4>About Extended Descriptions</h4>
+                <p>
+                    Each image on this page has a brief alt text describing what the image shows, plus a link to an extended description 
+                    in a separate file that provides detailed information. Users can choose whether to view the extended description based on their needs.
+                    This approach is particularly useful in EPUB publications where extended descriptions are kept in separate files.
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                <strong>Note:</strong> This sample webpage demonstrates the external file extended descriptions technique as documented in the 
+                <a href="https://github.com/w3c/publ-a11y-extended-desc">W3C Publication Accessibility - Extended Descriptions</a> explainer. 
+                Examples and structure adapted from the 
+                <a href="https://github.com/daisy/transitiontoepub/tree/main/experiments/extended-desc/extended-description-poc">DAISY Transition to EPUB Extended Descriptions Proof of Concept</a>.
+            </p>
+            <p>
+                <strong>Related Sample:</strong> See <a href="sample-webpage.html">in-file implementation example</a> for an alternative approach.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
