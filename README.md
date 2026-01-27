@@ -58,14 +58,62 @@ Further user testing is recommended to validate discoverability and presentation
 
 ### Recommended technique: identify link with `aria-details`
 
-Today, best practice relies on the use of `aria-details` to identify the link to the extended description. Following DAISY best practices, extended descriptions should be managed in a separate file rather than in the main document content. This approach avoids heavy additions to the original document structure and gives users the choice to consult the extra content without disrupting the reading flow.
+Today, best practice relies on the use of `aria-details` to identify the link to the extended description. The `aria-details` attribute creates a programmatic relationship between an image and its extended description. The extended description can be implemented in two complementary ways depending on the publication format and authoring context:
+
+#### In-file implementation (recommended for web)
+
+Extended descriptions can be embedded directly within the same content document or file as the image they explain. This approach works well for content that is primarily web-based or when authors prefer to keep all content in a single file.
+
+- Place the extended description in a `section` within the same file as the image (e.g., at the end of the document, in an appendix section, or in a dedicated descriptions section).
+- The image should have a brief `alt` and an `aria-details` attribute pointing to the ID of the extended description container.
+- The extended description `section` should have a unique ID matching the `aria-details` reference.
+- The description container should be a `section` with a heading, a presentational copy of the image, and the detailed description.
+- A backlink (`role="doc-backlink"`) or navigation link can be included to help users return to the image location.
+
+Example pattern:
+
+```html
+<!-- Main content -->
+<img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="desc-img1">
+
+<!-- In-file extended description (could be in the same section, an appendix, or elsewhere in the document) -->
+<section id="desc-img1" role="extendeddescription">
+    <h2>Extended description — Figure 1</h2>
+    <img src="figure1.png" role="presentation" alt="">
+    <p>...detailed structured description...</p>
+    <a role="doc-backlink" href="#img1">Back to image</a>
+</section>
+```
+
+#### External file implementation (recommended for EPUB)
+
+Following DAISY best practices, extended descriptions can be managed in a separate file rather than in the main document content. This approach avoids heavy additions to the original document structure and gives users the choice to consult the extra content without disrupting the reading flow.
 
 - Place the extended description in a separate HTML file (e.g., appendix or dedicated section).
 - In the main content, after the image, add a link to the extended description. The link can be text or an icon (with accessible name).
 - The image should have a brief `alt` and an `aria-details` attribute pointing to the link's ID.
 - The link should have a unique ID.
 - In the external file, each description is in a `section` with a matching ID, a heading, a presentational copy of the image, the detailed description, and a backlink (`role="doc-backlink"`) to the main content.
-- Note: `aria-details` is designed to reference structured, potentially complex descriptions that may include multiple sections or rich markup. Authors should ensure the referenced link is visible to all users and test the pattern across common reading systems and screen readers because user agent and AT support can vary.
+
+Example pattern:
+
+```html
+<!-- Main content -->
+<img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
+<a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
+
+<!-- Extended description file -->
+<section id="desc-img1" role="extendeddescription">
+    <h2>Extended description — Figure 1</h2>
+    <img src="figure1.png" role="presentation" alt="">
+    <p>...detailed structured description...</p>
+    <a role="doc-backlink" href="chapter01.xhtml#extdesc-1">Back to image</a>
+</section>
+```
+
+#### General considerations
+
+Both implementations use `aria-details` to create the semantic link between image and description. Authors should ensure the referenced content is visible to all users and test the pattern across common reading systems and screen readers because user agent and AT support can vary.
 
 ### Current limitations
 
@@ -154,8 +202,9 @@ Similar semantic identification challenges have been successfully addressed, dem
 
 ## Stakeholder feedback 
 
+- Browser developers, reading system developers and AT vendors should be engaged to validate UX and API exposure.
 - The DAISY Consortium, Fondazione LIA and Benetech recommend the separate file technique for EPUB. 
-- Reading system developers and AT vendors should be engaged to validate UX and API exposure.
+
 
 ## Next steps
 
