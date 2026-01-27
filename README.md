@@ -40,6 +40,8 @@ Collection managers and accessibility experts need to be able to identify and co
 - Support linking between primary content and descriptions, including across documents.
 - Ensure reading systems can surface descriptions in a way that preserves pagination and context.
 - Make descriptions usable by all readers, not just AT users.
+- Enable reading systems to offer users the ability to hide or skip extended descriptions based on their preferences or reading context.
+- Support text-to-speech and navigation features that can intelligently handle extended descriptions without disrupting reading flow.
 
 ## Non-goals
 
@@ -114,6 +116,17 @@ Example pattern:
 #### General considerations
 
 Both implementations use `aria-details` to create the semantic link between image and description. Authors should ensure the referenced content is visible to all users and test the pattern across common reading systems and screen readers because user agent and AT support can vary.
+
+##### Hiding and skipping extended descriptions
+
+A key benefit of explicit semantics is that reading systems can enable users to hide or skip extended descriptions based on their preferences. Because `aria-details` identifies the extended description programmatically:
+
+- **Reading systems can offer toggles** to show or hide extended descriptions, supporting different user needs and preferences (e.g., users who want a streamlined reading experience or those managing cognitive load).
+- **Text-to-speech engines can skip over descriptions** during navigation, allowing users to move between images without having descriptions read aloud.
+- **Navigation features can offer "skip" functionality** while optionally skipping or briefly announcing extended descriptions, improving reading flow for users who prefer not to engage with detailed content immediately.
+- **Users can navigate between references and descriptions** explicitly, rather than having descriptions embedded in the main text flow where they might interfere with reading pace or context.
+
+These capabilities ensure that extended descriptions enhance accessibility for users who need them while not imposing them on users who prefer alternative reading approaches or interaction patterns.
 
 ### Current limitations
 
