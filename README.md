@@ -58,19 +58,20 @@ Further user testing is recommended to validate discoverability and presentation
 
 ## State of the art
 
-### Recommended technique: identify link with `aria-details`
+### Recommended technique: identify a link or extended description with `aria-details`
 
-Today, best practice relies on the use of `aria-details` to identify the link to the extended description. The `aria-details` attribute creates a programmatic relationship between an image and its extended description. The extended description can be implemented in two complementary ways depending on the publication format and authoring context:
+Today, best practice relies on the use of `aria-details`to identify either a link to the extended description or the extended description itself. The `aria-details` attribute creates a programmatic relationship between an image and its extended description. The extended description can be implemented in two complementary ways depending on the publication format and authoring context:
 
-#### In-file implementation (recommended for web)
+#### Extended description adjacent to the image in the reading order
 
-Extended descriptions can be embedded directly within the same content document or file as the image they explain. This approach works well for content that is primarily web-based or when authors prefer to keep all content in a single file.
+Extended descriptions can be embedded directly before or after the image they explain. This approach works well for content that is primarily web-based or when authors prefer to keep all content in a single file. The `aria-details` attribute points directly to the description, with no need for intermediate links.
 
-- Place the extended description in a `section` within the same file as the image (e.g., at the end of the document, in an appendix section, or in a dedicated descriptions section).
-- The image should have a brief `alt` and an `aria-details` attribute pointing to the ID of the extended description container.
-- The extended description `section` should have a unique ID matching the `aria-details` reference.
-- The description container should be a `section` with a heading, a presentational copy of the image, and the detailed description.
-- A backlink (`role="doc-backlink"`) or navigation link can be included to help users return to the image location.
+- The image should have a brief `alt` and an `aria-details` attribute pointing directly to the `ID` of the extended description container.
+- Place the extended description in a container (that could be a `details` element or a `section`) just after or before the image.
+- The description container should have a unique `ID` matching the `aria-details` reference.
+- If using `<section>`, include a heading. 
+- If using `<details>`, the `<summary>` serves as the description heading.
+- A backlink (`role="doc-backlink"`) is not needed as the image is just before or after the extended description.
 
 Example pattern:
 
@@ -79,33 +80,32 @@ Example pattern:
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="desc-img1">
 
 <!-- In-file extended description (could be in the same section, an appendix, or elsewhere in the document) -->
-<section id="desc-img1" role="extendeddescription">
-    <h2>Extended description — Figure 1</h2>
-    <img src="figure1.png" role="presentation" alt="">
+<details id="desc-img1">
+    <summary>Extended description — Figure 1</summary>
     <p>...detailed structured description...</p>
-    <a role="doc-backlink" href="#img1">Back to image</a>
-</section>
+</details>
 ```
 
-#### External file implementation (recommended for EPUB)
+#### Extended descriptions placed in a separate section (possibly in another file)
 
-Following DAISY best practices, extended descriptions can be managed in a separate file rather than in the main document content. This approach avoids heavy additions to the original document structure and gives users the choice to consult the extra content without disrupting the reading flow.
+Extended descriptions can be managed in a separate section rather than adjacent to the image. This approach avoids heavy additions to the original document structure and gives users the choice to consult the extra content without disrupting the reading flow.
 
-- Place the extended description in a separate HTML file (e.g., appendix or dedicated section).
+- Place the extended description in a separate section (that could be in a different file).
 - In the main content, after the image, add a link to the extended description. The link can be text or an icon (with accessible name).
-- The image should have a brief `alt` and an `aria-details` attribute pointing to the link's ID.
-- The link should have a unique ID.
-- In the external file, each description is in a `section` with a matching ID, a heading, a presentational copy of the image, the detailed description, and a backlink (`role="doc-backlink"`) to the main content.
+- The image should have a brief `alt` and an `aria-details` attribute pointing to the link's `ID`.
+- The link should have a unique `ID`.
+- In case of an external file containing a serie of descriptions, each description is in a `section` with a matching `ID`, a heading, a presentational copy of the image, the detailed description.
+- A backlink (`role="doc-backlink"`) must allow users to navigate back to the exact place they left in the main content.
 
 Example pattern:
 
 ```html
 <!-- Main content -->
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
-<a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
+<a id="extdesc-1" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
 
 <!-- Extended description file -->
-<section id="desc-img1" role="extendeddescription">
+<section id="desc-img1">
     <h2>Extended description — Figure 1</h2>
     <img src="figure1.png" role="presentation" alt="">
     <p>...detailed structured description...</p>
@@ -161,6 +161,7 @@ We propose two complementary ARIA roles to strengthen link semantics and make ex
 - `role="extendeddescriptionref"` to mark the forward link (the anchor in the primary content that points to the extended description).
 - `role="extendeddescription"` to mark the container that holds the extended description (which can be in the same document or in an external resource).
 
+### Implementation for extended description adjacent to the image in the reading order
 
 Example pattern:
 
@@ -169,7 +170,23 @@ Example pattern:
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
 <a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
 
-<!-- Extended description file -->
+<!-- Adjacent extended description -->
+<details id="desc-img1" role="extendeddescription">
+    <summary>Extended description — Figure 1</summary>
+    <p>...detailed structured description...</p>
+</details>
+```
+
+###  Implementation for extended descriptions collected in a separate section (possibly in another file)
+
+Example pattern:
+
+```html
+<!-- Main content -->
+<img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
+<a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
+
+<!-- Separate section, eventually in other file -->
 <section id="desc-img1" role="extendeddescription">
     <h2>Extended description — Figure 1</h2>
     <img src="figure1.png" role="presentation" alt="">
