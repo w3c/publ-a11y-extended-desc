@@ -40,6 +40,8 @@ Collection managers and accessibility experts need to be able to identify and co
 - Support linking between primary content and descriptions, including across documents.
 - Ensure reading systems can surface descriptions in a way that preserves pagination and context.
 - Make descriptions usable by all readers, not just AT users.
+- Enable reading systems to offer users the ability to hide or skip extended descriptions based on their preferences or reading context.
+- Support text-to-speech and navigation features that can intelligently handle extended descriptions without disrupting reading flow.
 
 ## Non-goals
 
@@ -56,16 +58,63 @@ Further user testing is recommended to validate discoverability and presentation
 
 ## State of the art
 
-### Recommended technique: identify link with `aria-details`
+### Recommended technique: identify a link or extended description with `aria-details`
 
-Today, best practice relies on the use of `aria-details` to identify the link to the extended description. Following DAISY best practices, extended descriptions should be managed in a separate file rather than in the main document content. This approach avoids heavy additions to the original document structure and gives users the choice to consult the extra content without disrupting the reading flow.
+Today, best practice relies on the use of `aria-details`to identify either a link to the extended description or the extended description itself. The `aria-details` attribute creates a programmatic relationship between an image and its extended description. The extended description can be implemented in two complementary ways depending on the publication format and authoring context:
 
-- Place the extended description in a separate HTML file (e.g., appendix or dedicated section).
+#### Extended description adjacent to the image in the reading order
+
+Extended descriptions can be embedded directly before or after the image they explain. This approach works well for content that is primarily web-based or when authors prefer to keep all content in a single file. The `aria-details` attribute points directly to the description, with no need for intermediate links.
+
+- The image should have a brief `alt` and an `aria-details` attribute pointing directly to the `ID` of the extended description container.
+- Place the extended description in a container (that could be a `details` element or a `aside`) just after or before the image.
+- The description container should have a unique `ID` matching the `aria-details` reference.
+- If using `<details>`, the `<summary>` serves as the description heading.
+- A backlink (`role="doc-backlink"`) is not needed as the image is just before or after the extended description.
+
+Example pattern:
+
+```html
+<!-- Main content -->
+<img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="desc-img1">
+
+<!-- In-file extended description (could be in the same section, an appendix, or elsewhere in the document) -->
+<details id="desc-img1">
+    <summary>Extended description — Figure 1</summary>
+    <p>...detailed structured description...</p>
+</details>
+```
+
+#### Extended descriptions placed in a separate section (possibly in another file)
+
+Extended descriptions can be managed in a separate section rather than adjacent to the image. This approach avoids heavy additions to the original document structure and gives users the choice to consult the extra content without disrupting the reading flow.
+
+- Place the extended description in a separate section (that could be in a different file).
 - In the main content, after the image, add a link to the extended description. The link can be text or an icon (with accessible name).
-- The image should have a brief `alt` and an `aria-details` attribute pointing to the link's ID.
-- The link should have a unique ID.
-- In the external file, each description is in a `section` with a matching ID, a heading, a presentational copy of the image, the detailed description, and a backlink (`role="doc-backlink"`) to the main content.
-- Note: `aria-details` is designed to reference structured, potentially complex descriptions that may include multiple sections or rich markup. Authors should ensure the referenced link is visible to all users and test the pattern across common reading systems and screen readers because user agent and AT support can vary.
+- The image should have a brief `alt` and an `aria-details` attribute pointing to the link's `ID`.
+- The link should have a unique `ID`.
+- In case of an external file containing a serie of descriptions, each description is in a `section` with a matching `ID`, a heading, a presentational copy of the image, the detailed description.
+- A backlink (`role="doc-backlink"`) must allow users to navigate back to the exact place they left in the main content.
+
+Example pattern:
+
+```html
+<!-- Main content -->
+<img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
+<a id="extdesc-1" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
+
+<!-- Extended description file -->
+<section id="desc-img1">
+    <h2>Extended description — Figure 1</h2>
+    <img src="figure1.png" role="presentation" alt="">
+    <p>...detailed structured description...</p>
+    <a role="doc-backlink" href="chapter01.xhtml#extdesc-1">Back to image</a>
+</section>
+```
+
+#### General considerations
+
+Both implementations use `aria-details` to create the semantic link between image and description. Authors should ensure the referenced content is visible to all users and test the pattern across common reading systems and screen readers because user agent and AT support can vary.
 
 ### Current limitations
 
@@ -93,6 +142,15 @@ The footnote model is a useful precedent for linking and navigation patterns, bu
 <img src="/assets/Screenshot-footnote-books.png" alt="A screenshot showing the apple book reader displaying a footnote. The main text includes a superscript number linking to the footnote section. The referenced note text appears in a pop-up panel right on top of the superscript." width="200px">
 <img src="/assets/Screenshot-footnote-thorium.png" alt="Screenshot of the Thorium Reader displaying a footnote. The main text includes a superscript number that links to the footnote section. The referenced note text appears in a pop-up panel at the bottom of the screen." width="200px">
 
+### Hiding and skipping extended descriptions
+
+A key benefit of explicit semantics is that reading systems can enable users to hide or skip extended descriptions based on their preferences. This is especially relevant when extended descriptions are adjacent to the image in the reading order, where they may otherwise disrupt the flow of the main text. Implementing hide/skip functionality relies on standardized markup that explicitly identifies image description content. Specific use cases include:
+
+* Reading systems can allow users to show or hide extended descriptions, depending on their preferences or reading context.
+* Read aloud and media overlays can skip extended descriptions during continuous listening, while still allowing users to access them when needed.
+
+These capabilities ensure that extended descriptions enhance accessibility for users who need them while not imposing them on users who prefer alternative reading approaches or interaction patterns.
+
 ## Proposed approach
 
 We propose two complementary ARIA roles to strengthen link semantics and make extended-description relationships explicit to assistive technologies:
@@ -100,6 +158,7 @@ We propose two complementary ARIA roles to strengthen link semantics and make ex
 - `role="extendeddescriptionref"` to mark the forward link (the anchor in the primary content that points to the extended description).
 - `role="extendeddescription"` to mark the container that holds the extended description (which can be in the same document or in an external resource).
 
+### Implementation for extended description adjacent to the image in the reading order
 
 Example pattern:
 
@@ -108,7 +167,23 @@ Example pattern:
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
 <a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
 
-<!-- Extended description file -->
+<!-- Adjacent extended description -->
+<details id="desc-img1" role="extendeddescription">
+    <summary>Extended description — Figure 1</summary>
+    <p>...detailed structured description...</p>
+</details>
+```
+
+###  Implementation for extended descriptions collected in a separate section (possibly in another file)
+
+Example pattern:
+
+```html
+<!-- Main content -->
+<img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
+<a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
+
+<!-- Separate section, eventually in other file -->
 <section id="desc-img1" role="extendeddescription">
     <h2>Extended description — Figure 1</h2>
     <img src="figure1.png" role="presentation" alt="">
@@ -154,8 +229,9 @@ Similar semantic identification challenges have been successfully addressed, dem
 
 ## Stakeholder feedback 
 
+- Browser developers, reading system developers and AT vendors should be engaged to validate UX and API exposure.
 - The DAISY Consortium, Fondazione LIA and Benetech recommend the separate file technique for EPUB. 
-- Reading system developers and AT vendors should be engaged to validate UX and API exposure.
+
 
 ## Next steps
 
