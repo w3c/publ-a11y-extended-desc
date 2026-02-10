@@ -67,9 +67,8 @@ Today, best practice relies on the use of `aria-details`to identify either a lin
 Extended descriptions can be embedded directly before or after the image they explain. This approach works well for content that is primarily web-based or when authors prefer to keep all content in a single file. The `aria-details` attribute points directly to the description, with no need for intermediate links.
 
 - The image should have a brief `alt` and an `aria-details` attribute pointing directly to the `ID` of the extended description container.
-- Place the extended description in a container (that could be a `details` element or a `section`) just after or before the image.
+- Place the extended description in a container (that could be a `details` element or a `aside`) just after or before the image.
 - The description container should have a unique `ID` matching the `aria-details` reference.
-- If using `<section>`, include a heading. 
 - If using `<details>`, the `<summary>` serves as the description heading.
 - A backlink (`role="doc-backlink"`) is not needed as the image is just before or after the extended description.
 
