@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extended Descriptions - Sample Web Page (External File Implementation)</title>
+    <title>Proof of concept: Extended Descriptions - Sample Web Page (External File Implementation)</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: system-ui, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; padding: 20px; }
@@ -33,13 +33,23 @@
         
         .skip-to-content { position: absolute; top: -40px; left: 0; background: #000; color: white; padding: 8px; text-decoration: none; z-index: 100; }
         .skip-to-content:focus { top: 0; }
+        .warning {
+            background-color: #d9534f;
+            border-radius: 40px;             
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
     <div class="container">
-        <h1>Extended Descriptions Sample - External File Implementation</h1>
+        <h1>Proof of concept: Extended Descriptions Sample - External File Implementation</h1>
+        <p class="warning">Warning: This is a Proof of Concept implementation and should not be used in reality.</p>
         <p><em>This sample webpage demonstrates the external file implementation of extended descriptions. Images are linked to separate HTML files containing detailed descriptions. Based on the DAISY Transition to EPUB Extended Descriptions Proof of Concept.</em></p>
         
         <div class="article-section" id="main-content">
