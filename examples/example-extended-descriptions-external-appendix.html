@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof of concept: Extended Descriptions</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 8px; padding: 40px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+        h1 { margin-bottom: 30px; }
+        h2 { margin: 20px 0 12px; color: #34495e; font-size: 1.1em; }
+        h3 { margin-top: 0; color: #1565c0; }
+        p { margin-bottom: 15px; }
+        img { max-width: 100%; height: auto; margin: 15px 0; border: 1px solid #ddd; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        table th, table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        table th { background: #f0f0f0; font-weight: bold; }
+        ol, ul { margin: 15px 0 15px 30px; }
+        li { margin-bottom: 8px; }
+        
+        .segment-item { margin: 15px 0; padding: 12px; background: #f9f9f9; border-left: 4px solid; border-radius: 2px; }
+        .segment-item.blue { border-left-color: #007bff; }
+        .segment-item.green { border-left-color: #28a745; }
+        .segment-item.yellow { border-left-color: #ffc107; }
+        .segment-item.red { border-left-color: #dc3545; }
+        .segment-item strong { font-size: 1.1em; }
+        
+        .description-section { margin-bottom: 50px; padding-bottom: 40px; border-bottom: 2px solid #ddd; }
+        .description-section:last-child { border-bottom: none; }
+        
+        .back-link { display: inline-block; margin-top: 15px; padding: 6px 12px; background: #6c757d; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; transition: 0.2s; }
+        .back-link:hover { background: #5a6268; }
+        .back-link:focus { outline: 2px solid #5a6268; outline-offset: 2px; }
+        
+        .toc { background: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .toc h3 { margin: 0 0 10px; }
+        .toc ul { list-style: none; margin: 10px 0; padding: 0; }
+        .toc li { margin: 5px 0; }
+        .toc a { color: #007bff; }
+        
+        footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }
+        footer a { color: #007bff; }
+        
+        .skip-to-content { position: absolute; top: -40px; left: 0; background: #000; color: white; padding: 8px; text-decoration: none; z-index: 100; }
+        .skip-to-content:focus { top: 0; }
+         .warning {
+            background-color: #d9534f;
+            border-radius: 40px;             
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <div class="container">
+        <h1>Proof of concept: Extended Descriptions</h1>
+        <p class="warning">Warning: This is a Proof of Concept implementation and should not be used in reality.</p>
+        <p><em>This file contains all extended descriptions for the sample webpage demonstrating external file implementation of extended descriptions.</em></p>
+
+        <div class="toc">
+            <h3>In this document:</h3>
+            <ul>
+                <li><a href="#img1-desc">Website Visitor Statistics</a></li>
+                <li><a href="#img2-desc">Circulatory and Respiratory Systems</a></li>
+                <li><a href="#img3-desc">Market Segment Pie Chart</a></li>
+            </ul>
+        </div>
+
+        <div id="main-content">
+            <!-- Extended Description 1 -->
+            <div id="img1-desc" class="description-section">
+                <h2>Extended Description: Website Visitor Statistics</h2>
+                
+                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/chart-ebcaadfb.png" alt="Bar chart showing website visitor statistics for Q1 2014">
+                
+                <h3>Overview</h3>
+                <p>
+                    The chart shows the website hits for the first quarter of 2014 across three different sites. Site 1 has more visitors than either 
+                    of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant number of visitors, while for Site 3 
+                    page hits are increasing month on month.
+                </p>
+
+                <h3>Data Table</h3>
+                <table>
+                    <tbody><tr>
+                        <th scope="col">Period</th>
+                        <th scope="col">Site 1</th>
+                        <th scope="col">Site 2</th>
+                        <th scope="col">Site 3</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Jan</th>
+                        <td>135</td>
+                        <td>112</td>
+                        <td>92</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Feb</th>
+                        <td>117</td>
+                        <td>114</td>
+                        <td>99</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Mar</th>
+                        <td>96</td>
+                        <td>111</td>
+                        <td>126</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Qtr Total</th>
+                        <td>348</td>
+                        <td>337</td>
+                        <td>308</td>
+                    </tr>
+                </tbody></table>
+
+                <h3>Presentation</h3>
+                <p>
+                    The bar chart represents both the number of visitors per month for each website, and the total number of visitors 
+                    per website for the entire quarter. Website visitors for each month are represented using columns lined up horizontally, 
+                    with heights indicating the number of visitors. A fourth column is provided for each website with the accumulated 
+                    site visitors for the quarter.
+                </p>
+
+                <p><a href="example-extended-description-external.html#img1" class="back-link">← Return to image</a></p>
+            <div id="img2-desc" class="description-section">
+                <h2>Extended Description: Circulatory and Respiratory Systems</h2>
+                
+                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/ex1.jpg" alt="Diagram showing the circulatory and respiratory systems with blood flow arrows">
+
+                <h3>Systems in Sync</h3>
+                <p>
+                    The circulatory and respiratory systems work together to transport oxygen-rich blood through the body. A diagram shows a 
+                    cross-section of a heart between two lungs. Red arrows show the path of oxygen-rich blood cells. Blue arrows show the path of 
+                    oxygen-poor blood.
+                </p>
+
+                <h3>The Process</h3>
+                <ol>
+                    <li>Oxygen-rich blood cells travel to the heart from the lungs.</li>
+                    <li>The heart pumps enriched blood cells. They travel through the arteries to the body.</li>
+                    <li>Throughout the body, red blood cells deliver oxygen to cells and remove carbon dioxide.</li>
+                    <li>Veins carry oxygen-poor blood back to the heart.</li>
+                    <li>The heart pumps blood back to the lungs to eliminate carbon dioxide and absorb oxygen.</li>
+                    <li>Red blood cells move through the lungs, taking in oxygen and exchanging it for carbon dioxide.</li>
+                </ol>
+
+                <h3>Key Functions</h3>
+                <p>
+                    The heart acts as a pump that powers circulation, while the lungs facilitate gas exchange. This interconnected system 
+                    ensures that every cell in the body receives the oxygen it needs to function, while waste products are efficiently removed 
+                    and expelled through respiration. Without either system, the other cannot function effectively.
+                </p>
+
+                <p><a href="example-extended-description-external.html#img2" class="back-link">← Return to image</a></p>
+            <div id="img3-desc" class="description-section">
+                <h2>Extended Description: Market Segment Pie Chart</h2>
+                
+                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/pie-chart-154411_640.png" alt="Pie chart showing market segment distribution with four segments">
+
+                <h3>Chart Overview</h3>
+                <p>A pie chart with 4 parts representing different market segments:</p>
+
+                <div class="segment-item blue">
+                    <strong>Segment 1: 45%</strong> (shown in blue)
+                    <p>The largest segment, capturing nearly half of the total market. This dominant segment represents the primary focus 
+                    of market activity and accounts for the greatest proportion of overall market share.</p>
+                </div>
+
+                <div class="segment-item green">
+                    <strong>Segment 2: 25%</strong> (shown in green)
+                    <p>The second largest segment, representing a quarter of the market. This significant segment shows moderate market presence 
+                    and suggests a substantial secondary market opportunity.</p>
+                </div>
+
+                <div class="segment-item yellow">
+                    <strong>Segment 3: 20%</strong> (shown in yellow)
+                    <p>The third segment, accounting for one-fifth of the market. This smaller segment still represents a meaningful portion of 
+                    the overall market composition.</p>
+                </div>
+
+                <div class="segment-item red">
+                    <strong>Segment 4: 10%</strong> (shown in red)
+                    <p>The smallest segment, representing one-tenth of the total market. Despite being the smallest, this segment may still offer 
+                    opportunities for growth and development.</p>
+                </div>
+
+                <h3>Market Analysis</h3>
+                <p>
+                    This pie chart illustrates the market distribution across four distinct segments. The largest segment captures 45% of the market, 
+                    indicating it is the dominant area. The second segment at 25% represents a significant but smaller portion. The remaining two 
+                    segments together account for 30% of the market, with one at 20% and the smallest at 10%.
+                </p>
+                
+                <p>
+                    The concentration of 45% in the largest segment suggests a market where a single segment dominates. The complementary distribution 
+                    of the remaining segments provides insight into the market's diversity and the opportunities that exist in secondary markets.
+                </p>
+
+                <p><a href="example-extended-description-external.html#img3" class="back-link">← Return to image</a></p>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                <strong>Related Files:</strong> 
+                <a href="example-extended-description-external.html">Main article (external file implementation)</a> | 
+                <a href="sample-webpage.html">In-file implementation example</a>
+            </p>
+        </footer>
+    </div>
+
+
+</div></div></body></html>
