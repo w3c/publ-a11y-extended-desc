@@ -165,10 +165,9 @@ Example pattern:
 ```html
 <!-- Main content -->
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
-<a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
 
 <!-- Adjacent extended description -->
-<details id="desc-img1" role="extendeddescription">
+<details id="extdesc-1" role="extendeddescription">
     <summary>Extended description — Figure 1</summary>
     <p>...detailed structured description...</p>
 </details>
