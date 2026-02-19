@@ -253,6 +253,13 @@ Similar semantic identification challenges have been successfully addressed, dem
 - [ARIA `aria-details` Attribute](https://www.w3.org/TR/wai-aria-1.2/#aria-details)
 - [POC: Extended Description](https://github.com/daisy/transitiontoepub/tree/main/experiments/extended-desc)
 
+### Example resources
+
+- [Adjacent examples (`details` and `aside`)](https://w3c.github.io/publ-a11y-extended-desc/examples/example-extended-descriptions-adjacent.html)
+- [In-file example](https://w3c.github.io/publ-a11y-extended-desc/examples/example-extended-descriptions-internal.html)
+- [External example (main content)](https://w3c.github.io/publ-a11y-extended-desc/examples/example-extended-descriptions-external.html)
+- [External example (appendix)](https://w3c.github.io/publ-a11y-extended-desc/examples/example-extended-descriptions-external-appendix.html)
+
 ## Acknowledgements
 
 This explainer has been written by Gautier Chomel summarizing previous works from Charles LaPierre and Gregorio Pellegrino, discussed and reviewed by Matthew Atkinson, Matt Garrish, George Kerscher, Steve Noble, Wendy Reid, James Yanchack, and others. All works conducted under Avneesh Singh coordination.
