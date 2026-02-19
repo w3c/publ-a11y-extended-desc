@@ -67,7 +67,7 @@ Today, best practice relies on the use of `aria-details`to identify either a lin
 Extended descriptions can be embedded directly before or after the image they explain. This approach works well for content that is primarily web-based or when authors prefer to keep all content in a single file. The `aria-details` attribute points directly to the description, with no need for intermediate links.
 
 - The image should have a brief `alt` and an `aria-details` attribute pointing directly to the `ID` of the extended description container.
-- Place the extended description in a container (that could be a `details` element or a `aside`) just after or before the image.
+- Place the extended description in a container (that could be a `details` element or an `aside`) just after or before the image.
 - The description container should have a unique `ID` matching the `aria-details` reference.
 - If using `<details>`, the `<summary>` serves as the description heading.
 - A backlink (`role="doc-backlink"`) is not needed as the image is just before or after the extended description.
@@ -91,9 +91,9 @@ Extended descriptions can be managed in a separate section rather than adjacent 
 
 - Place the extended description in a separate section (that could be in a different file).
 - In the main content, after the image, add a link to the extended description. The link can be text or an icon (with accessible name).
-- The image should have a brief `alt` and an `aria-details` attribute pointing to the link's `ID`.
+- The image should have a brief `alt` and a `aria-details` attribute pointing to the link's `ID`.
 - The link should have a unique `ID`.
-- In case of an external file containing a serie of descriptions, each description is in a `section` with a matching `ID`, a heading, a presentational copy of the image, the detailed description.
+- In case of an external file containing a series of descriptions, each description is in a `section` with a matching `ID`, a heading, a presentational copy of the image, the detailed description.
 - A backlink (`role="doc-backlink"`) must allow users to navigate back to the exact place they left in the main content.
 
 Example pattern:
