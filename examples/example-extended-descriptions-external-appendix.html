@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proof of concept: Extended Descriptions</title>
+    <title>Proof of concept: Extended Descriptions - External Descriptions Appendix</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: system-ui, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; padding: 20px; }
@@ -18,35 +18,36 @@
         table th { background: #f0f0f0; font-weight: bold; }
         ol, ul { margin: 15px 0 15px 30px; }
         li { margin-bottom: 8px; }
-        
+
         .segment-item { margin: 15px 0; padding: 12px; background: #f9f9f9; border-left: 4px solid; border-radius: 2px; }
         .segment-item.blue { border-left-color: #007bff; }
         .segment-item.green { border-left-color: #28a745; }
         .segment-item.yellow { border-left-color: #ffc107; }
         .segment-item.red { border-left-color: #dc3545; }
         .segment-item strong { font-size: 1.1em; }
-        
-        .description-section { margin-bottom: 50px; padding-bottom: 40px; border-bottom: 2px solid #ddd; }
-        .description-section:last-child { border-bottom: none; }
-        
-        .back-link { display: inline-block; margin-top: 15px; padding: 6px 12px; background: #6c757d; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; transition: 0.2s; }
-        .back-link:hover { background: #5a6268; }
-        .back-link:focus { outline: 2px solid #5a6268; outline-offset: 2px; }
-        
+
+        [role="extendeddescription"] { margin-bottom: 50px; padding-bottom: 40px; border-bottom: 2px solid #ddd; }
+        [role="extendeddescription"]:last-child { border-bottom: none; }
+
+        [role="doc-backlink"] { display: inline-block; margin-top: 15px; padding: 6px 12px; background: #6c757d; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; transition: 0.2s; }
+        [role="doc-backlink"]:hover { background: #5a6268; }
+        [role="doc-backlink"]:focus { outline: 2px solid #5a6268; outline-offset: 2px; }
+
         .toc { background: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
         .toc h3 { margin: 0 0 10px; }
         .toc ul { list-style: none; margin: 10px 0; padding: 0; }
         .toc li { margin: 5px 0; }
         .toc a { color: #007bff; }
-        
+
         footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 0.9em; }
         footer a { color: #007bff; }
-        
+
         .skip-to-content { position: absolute; top: -40px; left: 0; background: #000; color: white; padding: 8px; text-decoration: none; z-index: 100; }
         .skip-to-content:focus { top: 0; }
-         .warning {
+
+        .warning {
             background-color: #d9534f;
-            border-radius: 40px;             
+            border-radius: 40px;
             color: white;
             padding: 10px;
             font-weight: bold;
@@ -59,9 +60,9 @@
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
     <div class="container">
-        <h1>Proof of concept: Extended Descriptions</h1>
+        <h1>Proof of concept: Extended Descriptions - Appendix</h1>
         <p class="warning">Warning: This is a Proof of Concept implementation and should not be used in reality.</p>
-        <p><em>This file contains all extended descriptions for the sample webpage demonstrating external file implementation of extended descriptions.</em></p>
+        <p><em>This file contains the external extended descriptions referenced from the main article example.</em></p>
 
         <div class="toc">
             <h3>In this document:</h3>
@@ -73,22 +74,21 @@
         </div>
 
         <div id="main-content">
-            <!-- Extended Description 1 -->
-            <div id="img1-desc" class="description-section">
+            <section id="img1-desc" role="extendeddescription">
                 <h2>Extended Description: Website Visitor Statistics</h2>
-                
-                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/chart-ebcaadfb.png" alt="Bar chart showing website visitor statistics for Q1 2014">
-                
+
+                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/chart-ebcaadfb.png" role="presentation" alt="">
+
                 <h3>Overview</h3>
                 <p>
-                    The chart shows the website hits for the first quarter of 2014 across three different sites. Site 1 has more visitors than either 
-                    of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant number of visitors, while for Site 3 
+                    The chart shows the website hits for the first quarter of 2014 across three different sites. Site 1 has more visitors than either
+                    of the other sites, but the number of visitors is decreasing. Site 2 has a fairly constant number of visitors, while for Site 3
                     page hits are increasing month on month.
                 </p>
 
                 <h3>Data Table</h3>
                 <table>
-                    <tbody><tr>
+                    <tr>
                         <th scope="col">Period</th>
                         <th scope="col">Site 1</th>
                         <th scope="col">Site 2</th>
@@ -118,26 +118,28 @@
                         <td>337</td>
                         <td>308</td>
                     </tr>
-                </tbody></table>
+                </table>
 
                 <h3>Presentation</h3>
                 <p>
-                    The bar chart represents both the number of visitors per month for each website, and the total number of visitors 
-                    per website for the entire quarter. Website visitors for each month are represented using columns lined up horizontally, 
-                    with heights indicating the number of visitors. A fourth column is provided for each website with the accumulated 
+                    The bar chart represents both the number of visitors per month for each website, and the total number of visitors
+                    per website for the entire quarter. Website visitors for each month are represented using columns lined up horizontally,
+                    with heights indicating the number of visitors. A fourth column is provided for each website with the accumulated
                     site visitors for the quarter.
                 </p>
 
-                <p><a href="example-extended-description-external.html#img1" class="back-link">← Return to image</a></p>
-            <div id="img2-desc" class="description-section">
+                <p><a role="doc-backlink" href="example-extended-descriptions-external.html#img1-desc-link">← Return to image</a></p>
+            </section>
+
+            <section id="img2-desc" role="extendeddescription">
                 <h2>Extended Description: Circulatory and Respiratory Systems</h2>
-                
-                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/ex1.jpg" alt="Diagram showing the circulatory and respiratory systems with blood flow arrows">
+
+                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/ex1.jpg" role="presentation" alt="">
 
                 <h3>Systems in Sync</h3>
                 <p>
-                    The circulatory and respiratory systems work together to transport oxygen-rich blood through the body. A diagram shows a 
-                    cross-section of a heart between two lungs. Red arrows show the path of oxygen-rich blood cells. Blue arrows show the path of 
+                    The circulatory and respiratory systems work together to transport oxygen-rich blood through the body. A diagram shows a
+                    cross-section of a heart between two lungs. Red arrows show the path of oxygen-rich blood cells. Blue arrows show the path of
                     oxygen-poor blood.
                 </p>
 
@@ -153,68 +155,68 @@
 
                 <h3>Key Functions</h3>
                 <p>
-                    The heart acts as a pump that powers circulation, while the lungs facilitate gas exchange. This interconnected system 
-                    ensures that every cell in the body receives the oxygen it needs to function, while waste products are efficiently removed 
+                    The heart acts as a pump that powers circulation, while the lungs facilitate gas exchange. This interconnected system
+                    ensures that every cell in the body receives the oxygen it needs to function, while waste products are efficiently removed
                     and expelled through respiration. Without either system, the other cannot function effectively.
                 </p>
 
-                <p><a href="example-extended-description-external.html#img2" class="back-link">← Return to image</a></p>
-            <div id="img3-desc" class="description-section">
+                <p><a role="doc-backlink" href="example-extended-descriptions-external.html#img2-desc-link">← Return to image</a></p>
+            </section>
+
+            <section id="img3-desc" role="extendeddescription">
                 <h2>Extended Description: Market Segment Pie Chart</h2>
-                
-                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/pie-chart-154411_640.png" alt="Pie chart showing market segment distribution with four segments">
+
+                <img src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/pie-chart-154411_640.png" role="presentation" alt="">
 
                 <h3>Chart Overview</h3>
                 <p>A pie chart with 4 parts representing different market segments:</p>
 
                 <div class="segment-item blue">
                     <strong>Segment 1: 45%</strong> (shown in blue)
-                    <p>The largest segment, capturing nearly half of the total market. This dominant segment represents the primary focus 
+                    <p>The largest segment, capturing nearly half of the total market. This dominant segment represents the primary focus
                     of market activity and accounts for the greatest proportion of overall market share.</p>
                 </div>
 
                 <div class="segment-item green">
                     <strong>Segment 2: 25%</strong> (shown in green)
-                    <p>The second largest segment, representing a quarter of the market. This significant segment shows moderate market presence 
+                    <p>The second largest segment, representing a quarter of the market. This significant segment shows moderate market presence
                     and suggests a substantial secondary market opportunity.</p>
                 </div>
 
                 <div class="segment-item yellow">
                     <strong>Segment 3: 20%</strong> (shown in yellow)
-                    <p>The third segment, accounting for one-fifth of the market. This smaller segment still represents a meaningful portion of 
+                    <p>The third segment, accounting for one-fifth of the market. This smaller segment still represents a meaningful portion of
                     the overall market composition.</p>
                 </div>
 
                 <div class="segment-item red">
                     <strong>Segment 4: 10%</strong> (shown in red)
-                    <p>The smallest segment, representing one-tenth of the total market. Despite being the smallest, this segment may still offer 
+                    <p>The smallest segment, representing one-tenth of the total market. Despite being the smallest, this segment may still offer
                     opportunities for growth and development.</p>
                 </div>
 
                 <h3>Market Analysis</h3>
                 <p>
-                    This pie chart illustrates the market distribution across four distinct segments. The largest segment captures 45% of the market, 
-                    indicating it is the dominant area. The second segment at 25% represents a significant but smaller portion. The remaining two 
+                    This pie chart illustrates the market distribution across four distinct segments. The largest segment captures 45% of the market,
+                    indicating it is the dominant area. The second segment at 25% represents a significant but smaller portion. The remaining two
                     segments together account for 30% of the market, with one at 20% and the smallest at 10%.
                 </p>
-                
                 <p>
-                    The concentration of 45% in the largest segment suggests a market where a single segment dominates. The complementary distribution 
+                    The concentration of 45% in the largest segment suggests a market where a single segment dominates. The complementary distribution
                     of the remaining segments provides insight into the market's diversity and the opportunities that exist in secondary markets.
                 </p>
 
-                <p><a href="example-extended-description-external.html#img3" class="back-link">← Return to image</a></p>
-            </div>
+                <p><a role="doc-backlink" href="example-extended-descriptions-external.html#img3-desc-link">← Return to image</a></p>
+            </section>
         </div>
 
         <footer>
             <p>
-                <strong>Related Files:</strong> 
-                <a href="example-extended-description-external.html">Main article (external file implementation)</a> | 
-                <a href="sample-webpage.html">In-file implementation example</a>
+                <strong>Related Files:</strong>
+                <a href="example-extended-descriptions-external.html">Main article (external file implementation)</a> |
+                <a href="example-extended-descriptions-internal.html">In-file implementation example</a>
             </p>
         </footer>
     </div>
-
-
-</div></div></body></html>
+</body>
+</html>

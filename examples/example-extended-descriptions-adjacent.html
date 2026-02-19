@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof of concept: Extended Descriptions - Adjacent Examples</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 { margin-bottom: 20px; color: #1a1a1a; }
+        h2 { margin: 30px 0 12px; color: #2c3e50; font-size: 1.35em; }
+        h3 { margin: 16px 0 10px; color: #34495e; font-size: 1.1em; }
+        p { margin-bottom: 14px; text-align: justify; }
+
+        .warning {
+            background-color: #d9534f;
+            border-radius: 40px;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .example-block {
+            margin: 30px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #fafafa;
+            padding: 20px;
+        }
+
+        figure { margin: 0 0 16px; }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        figcaption {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        [role="extendeddescription"] {
+            background: white;
+            border-left: 4px solid #007bff;
+            border-radius: 4px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        details[role="extendeddescription"] summary {
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+
+        aside[role="extendeddescription"] h3 {
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th { background: #f0f0f0; }
+
+        .skip-to-content {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #000;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-to-content:focus { top: 0; }
+
+        footer {
+            margin-top: 36px;
+            padding-top: 16px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.92em;
+        }
+
+        footer a { color: #007bff; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <div class="container">
+        <h1>Proof of concept: Extended Descriptions - Adjacent Implementation</h1>
+        <p class="warning">Warning: This is a Proof of Concept implementation and should not be used in reality.</p>
+        <p><em>This sample demonstrates adjacent extended descriptions with both supported container options: <code>&lt;details&gt;</code> and <code>&lt;aside&gt;</code>.</em></p>
+
+        <main id="main-content">
+            <h2>Example 1: Adjacent Extended Description with &lt;details&gt;</h2>
+            <p>
+                The image uses <code>aria-details</code> to point directly to a nearby <code>&lt;details&gt;</code> container.
+                The description is adjacent in reading order and does not require a separate forward link.
+            </p>
+
+            <div class="example-block">
+                <figure>
+                    <img
+                        id="img-details"
+                        src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/chart-ebcaadfb.png"
+                        alt="Bar chart showing 2014 first quarter visitors to three websites"
+                        aria-details="desc-details">
+                    <figcaption><strong>Figure 1:</strong> Website Visitor Statistics Q1 2014.</figcaption>
+                </figure>
+
+                <details id="desc-details" role="extendeddescription">
+                    <summary>Extended description — Figure 1 (details)</summary>
+                    <p>
+                        The chart compares website visits for three sites from January to March 2014.
+                        Site 1 declines over the quarter, Site 2 remains relatively stable, and Site 3 grows steadily.
+                    </p>
+                    <table>
+                        <tr>
+                            <th scope="col">Period</th>
+                            <th scope="col">Site 1</th>
+                            <th scope="col">Site 2</th>
+                            <th scope="col">Site 3</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Jan</th>
+                            <td>135</td>
+                            <td>112</td>
+                            <td>92</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Feb</th>
+                            <td>117</td>
+                            <td>114</td>
+                            <td>99</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mar</th>
+                            <td>96</td>
+                            <td>111</td>
+                            <td>126</td>
+                        </tr>
+                    </table>
+                </details>
+            </div>
+
+            <h2>Example 2: Adjacent Extended Description with &lt;aside&gt;</h2>
+            <p>
+                The second image uses the same direct <code>aria-details</code> relationship but points to an adjacent
+                <code>&lt;aside&gt;</code> container instead of <code>&lt;details&gt;</code>.
+            </p>
+
+            <div class="example-block">
+                <figure>
+                    <img
+                        id="img-aside"
+                        src="https://raw.githubusercontent.com/daisy/transitiontoepub/main/experiments/extended-desc/extended-description-poc/OEBPS/ex1.jpg"
+                        alt="Diagram showing oxygen-rich blood flowing between the heart and lungs"
+                        aria-details="desc-aside">
+                    <figcaption><strong>Figure 2:</strong> Human circulatory and respiratory systems.</figcaption>
+                </figure>
+
+                <aside id="desc-aside" role="extendeddescription" aria-labelledby="desc-aside-heading">
+                    <h3 id="desc-aside-heading">Extended description — Figure 2 (aside)</h3>
+                    <p>
+                        The diagram shows a cross-section of the heart between two lungs. Red arrows indicate oxygen-rich blood flow,
+                        and blue arrows indicate oxygen-poor blood flow.
+                    </p>
+                    <ol>
+                        <li>Oxygen-rich blood returns from the lungs to the heart.</li>
+                        <li>The heart pumps oxygen-rich blood through arteries to the body.</li>
+                        <li>Cells use oxygen and release carbon dioxide.</li>
+                        <li>Veins return oxygen-poor blood to the heart and then to the lungs.</li>
+                    </ol>
+                </aside>
+            </div>
+        </main>
+
+        <footer>
+            <p>
+                <strong>Related samples:</strong>
+                <a href="example-extended-descriptions-external.html">External descriptions (main)</a> |
+                <a href="example-extended-descriptions-external-appendix.html">External descriptions (appendix)</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
