@@ -78,7 +78,7 @@ Example pattern:
 <!-- Main content -->
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="desc-img1">
 
-<!-- In-file extended description (could be in the same section, an appendix, or elsewhere in the document) -->
+<!-- Adjacent extended description -->
 <details id="desc-img1">
     <summary>Extended description — Figure 1</summary>
     <p>...detailed structured description...</p>
@@ -103,7 +103,7 @@ Example pattern:
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
 <a id="extdesc-1" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
 
-<!-- Extended description file -->
+<!-- Extended descriptions section -->
 <section id="desc-img1">
     <h2>Extended description — Figure 1</h2>
     <img src="figure1.png" role="presentation" alt="">
@@ -182,7 +182,7 @@ Example pattern:
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
 <a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
 
-<!-- Separate section, eventually in other file -->
+<!-- Extended descriptions section -->
 <section id="desc-img1" role="extendeddescription">
     <h2>Extended description — Figure 1</h2>
     <img src="figure1.png" role="presentation" alt="">
