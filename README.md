@@ -34,6 +34,10 @@ Authors and reading systems need a reliable, discoverable, and programmatic way 
 
 Collection managers and accessibility experts need to be able to identify and collect extended descriptions with links to their context image.
 
+At a platform level, this problem arises because extended image descriptions lack explicit, programmatically identifiable semantics. Web accessibility guidance requires that text alternatives and their relationships to non-text content be programmatically determinable, rather than inferred from presentation or author conventions. 
+
+HTML and ARIA follow this same architectural principle by providing explicit semantics for meaningful content, enabling consistent discovery and interaction by assistive technologies. While short text alternatives are programmatically associated with images, there is currently no equivalent semantic mechanism for extended descriptions. As a result, assistive technologies cannot reliably identify, announce, or expose extended descriptions consistently, even when authors provide them.
+
 ## Goals
 
 - Provide machine-discoverable semantics for extended descriptions.
@@ -67,7 +71,7 @@ Today, best practice relies on the use of `aria-details`to identify either a lin
 Extended descriptions can be embedded directly before or after the image they explain. This approach works well for content that is primarily web-based or when authors prefer to keep all content in a single file. The `aria-details` attribute points directly to the description, with no need for intermediate links.
 
 - The image should have a brief `alt` and an `aria-details` attribute pointing directly to the `ID` of the extended description container.
-- Place the extended description in a container (that could be a `details` element or a `aside`) just after or before the image.
+- Place the extended description in a container (that could be a `details` element or an `aside`) just after or before the image.
 - The description container should have a unique `ID` matching the `aria-details` reference.
 - If using `<details>`, the `<summary>` serves as the description heading.
 - A backlink (`role="doc-backlink"`) is not needed as the image is just before or after the extended description.
@@ -78,7 +82,7 @@ Example pattern:
 <!-- Main content -->
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="desc-img1">
 
-<!-- In-file extended description (could be in the same section, an appendix, or elsewhere in the document) -->
+<!-- Adjacent extended description -->
 <details id="desc-img1">
     <summary>Extended description — Figure 1</summary>
     <p>...detailed structured description...</p>
@@ -91,9 +95,9 @@ Extended descriptions can be managed in a separate section rather than adjacent 
 
 - Place the extended description in a separate section (that could be in a different file).
 - In the main content, after the image, add a link to the extended description. The link can be text or an icon (with accessible name).
-- The image should have a brief `alt` and an `aria-details` attribute pointing to the link's `ID`.
+- The image should have a brief `alt` and a `aria-details` attribute pointing to the link's `ID`.
 - The link should have a unique `ID`.
-- In case of an external file containing a serie of descriptions, each description is in a `section` with a matching `ID`, a heading, a presentational copy of the image, the detailed description.
+- In case of an external file containing a series of descriptions, each description is in a `section` with a matching `ID`, a heading, a presentational copy of the image, the detailed description.
 - A backlink (`role="doc-backlink"`) must allow users to navigate back to the exact place they left in the main content.
 
 Example pattern:
@@ -103,7 +107,7 @@ Example pattern:
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
 <a id="extdesc-1" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
 
-<!-- Extended description file -->
+<!-- Extended descriptions section -->
 <section id="desc-img1">
     <h2>Extended description — Figure 1</h2>
     <img src="figure1.png" role="presentation" alt="">
@@ -165,10 +169,9 @@ Example pattern:
 ```html
 <!-- Main content -->
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
-<a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
 
 <!-- Adjacent extended description -->
-<details id="desc-img1" role="extendeddescription">
+<details id="extdesc-1" role="extendeddescription">
     <summary>Extended description — Figure 1</summary>
     <p>...detailed structured description...</p>
 </details>
@@ -183,7 +186,7 @@ Example pattern:
 <img id="img1" src="figure1.png" alt="Schematic of the device" aria-details="extdesc-1">
 <a id="extdesc-1" role="extendeddescriptionref" href="extended-descriptions.xhtml#desc-img1">Extended description</a>
 
-<!-- Separate section, eventually in other file -->
+<!-- Extended descriptions section -->
 <section id="desc-img1" role="extendeddescription">
     <h2>Extended description — Figure 1</h2>
     <img src="figure1.png" role="presentation" alt="">
