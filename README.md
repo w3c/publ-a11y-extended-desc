@@ -205,6 +205,8 @@ The combination of `aria-details`, `role="extendeddescriptionref"` and `role="ex
 
 Similar semantic identification challenges have been successfully addressed, demonstrating the value of specific semantic roles for different types of linked supplementary content. For example, DPUB ARIA roles provide the `doc-footnote` and `doc-noteref` roles to identify notes and their references, enabling assistive technologies and text-to-speech engines to announce them appropriately and user agents to implement specialized navigation features.
 
+This explainer focuses on ARIA semantics for assistive technology and interactive reading affordances. Machine-readable metadata for search and indexing (e.g., schema.org) is out of scope but not precluded. Publishers who require both can coordinate them through shared container IDs and element references, avoiding redundant markup and mismatches. Such coordination is a publisher implementation choice, not a requirement of this specification.
+
 ### Dependencies on non-stable features
 
 - Any ARIA role additions require coordination with the ARIA Working Group.
