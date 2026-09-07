@@ -215,6 +215,14 @@ Similar semantic identification challenges have been successfully addressed, dem
 - Reading systems can implement strong affordances and a consistent user experience (for example, panels or a navigate-and-return flow).
 - Tools can extract together images and extended description.
 
+## Note on current `aria-details` support
+
+While assistive technology support for `aria-details` is currently inconsistent, both recommended implementation patterns degrade gracefully in its absence. Without `aria-details` support, screen reader users simply lose the explicit "has details" semantic announcement, yet retain complete access to the content via standard HTML navigation. 
+
+The three-year DAISY proof-of-concept specifically validated these patterns against current AT support levels. 
+
+Standardizing these explicit semantics creates the necessary target for future vendor interoperability, rather than making universal support a precondition for progress.
+
 ## Alternatives considered
 
 - `<details>`: native HTML, but problematic in EPUB due to pagination and inconsistent support.
