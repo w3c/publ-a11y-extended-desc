@@ -231,7 +231,7 @@ Standardizing these explicit semantics creates the necessary target for future v
 - `longdesc`: rejected due to historical misuse, lack of adoption, and removal from HTML and EPUB specifications.
 - `rel="extendeddescription"`: does not allow the container of the extended description to be identified. Could provide additional context but is not considered by assistive technologies.
 - `aria-describedby`: flattens referenced content into a plain-text accessible description, discarding structure (headings, lists, backlinks).
-- `aria-flowto`: designed to suggest an alternate linear reading sequence (redirecting standard navigation flow), whereas extended descriptions require a programmatic association to supplementary metadata that preserves the primary reading context.
+- `aria-flowto`: designed to suggest an alternate linear reading sequence (redirecting standard navigation flow), whereas extended descriptions require a programmatic association to supplementary content that preserves the primary reading context.
 - `aria-controls`: designed to indicate control relationships (e.g., button controlling a widget), not content relationships; does not mark the target with semantic meaning, limiting affordances for hide/skip or navigate-and-return behavior.
 - `epub:type`: The use of epub:type is deprecated by the EPUB spec.
 - RDFa/microdata: structured data approaches that add semantic richness but require parsing infrastructure and do not directly expose relationships to assistive technologies via the accessibility tree.
