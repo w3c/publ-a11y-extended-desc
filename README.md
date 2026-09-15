@@ -205,6 +205,8 @@ The combination of `aria-details`, `role="extendeddescriptionref"` and `role="ex
 
 Similar semantic identification challenges have been successfully addressed, demonstrating the value of specific semantic roles for different types of linked supplementary content. For example, DPUB ARIA roles provide the `doc-footnote` and `doc-noteref` roles to identify notes and their references, enabling assistive technologies and text-to-speech engines to announce them appropriately and user agents to implement specialized navigation features.
 
+This explainer focuses on ARIA semantics for assistive technology and interactive reading affordances. Machine-readable metadata for search and indexing (e.g., schema.org) is out of scope but not precluded. Publishers who require both can coordinate them through shared container IDs and element references, avoiding redundant markup and mismatches. Such coordination is a publisher implementation choice, not a requirement of this specification.
+
 ### Dependencies on non-stable features
 
 - Any ARIA role additions require coordination with the ARIA Working Group.
@@ -215,11 +217,22 @@ Similar semantic identification challenges have been successfully addressed, dem
 - Reading systems can implement strong affordances and a consistent user experience (for example, panels or a navigate-and-return flow).
 - Tools can extract together images and extended description.
 
+## Note on current `aria-details` support
+
+While assistive technology support for `aria-details` is currently inconsistent, both recommended implementation patterns degrade gracefully in its absence. Without `aria-details` support, screen reader users simply lose the explicit "has details" semantic announcement, yet retain complete access to the content via standard HTML navigation. 
+
+The three-year DAISY proof-of-concept specifically validated these patterns against current AT support levels. 
+
+Standardizing these explicit semantics creates the necessary target for future vendor interoperability, rather than making universal support a precondition for progress.
+
 ## Alternatives considered
 
 - `<details>`: native HTML, but problematic in EPUB due to pagination and inconsistent support.
 - `longdesc`: rejected due to historical misuse, lack of adoption, and removal from HTML and EPUB specifications.
 - `rel="extendeddescription"`: does not allow the container of the extended description to be identified. Could provide additional context but is not considered by assistive technologies.
+- `aria-describedby`: flattens referenced content into a plain-text accessible description, discarding structure (headings, lists, backlinks).
+- `aria-flowto`: designed to suggest an alternate linear reading sequence (redirecting standard navigation flow), whereas extended descriptions require a programmatic association to supplementary content that preserves the primary reading context.
+- `aria-controls`: designed to indicate control relationships (e.g., button controlling a widget), not content relationships; does not mark the target with semantic meaning, limiting affordances for hide/skip or navigate-and-return behavior.
 - `epub:type`: The use of epub:type is deprecated by the EPUB spec.
 - RDFa/microdata: structured data approaches that add semantic richness but require parsing infrastructure and do not directly expose relationships to assistive technologies via the accessibility tree.
 - Reusing `doc-noteref`/`doc-footnote` semantics: while structurally similar, extended descriptions differ in scope and purpose from footnotes; repurposing existing roles would create confusion for users and implementers.
